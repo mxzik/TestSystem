@@ -4,9 +4,42 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestSystemProject"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="600" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/TestSystemProject;component/Images/image.JPG"  Opacity="0.6"/>
+    </Window.Background>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Opacity="0.9">
+            <StackPanel Height="200" Margin="10" Background="White">
+                <TextBlock TextAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="Orange">Регистрация</TextBlock>
+
+                <TextBox x:Name="txbRegisterEmail" BorderBrush="Yellow" materialDesign:HintAssist.Hint="Email" Width="150" Margin="0 15 0 0"/>
+
+                <PasswordBox x:Name="txbRegisterPassword" BorderBrush="Yellow" materialDesign:HintAssist.Hint="Password" Width="150" Margin="0 5 0 0"/>
+
+                <PasswordBox x:Name="txbRegisterPasswordConfirm" BorderBrush="Yellow" materialDesign:HintAssist.Hint="Password Confirm" Width="150" Margin="0 5 0 0"/>
+
+                <Button x:Name="btnRegister" Content="Зарегистрироваться" Width="200" Margin="0 25 0 0" Click="BtnRegister_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1" Opacity="0.9">
+            <StackPanel Height="200" Margin="10" Background="White">
+                <TextBlock TextAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="Orange">Авторизация</TextBlock>
+
+                <TextBox x:Name="txbLoginEmail" BorderBrush="Yellow" materialDesign:HintAssist.Hint="Email" Width="150" Margin="0 30 0 0"/>
+
+                <PasswordBox x:Name="txbLoginPassword" BorderBrush="Yellow" materialDesign:HintAssist.Hint="Password" Width="150" Margin="0 15 0 0"/>
+
+                <Button x:Name="btnLogin" Content="Войти" Width="200" Margin="0 30 0 0" Click="BtnLogin_Click"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

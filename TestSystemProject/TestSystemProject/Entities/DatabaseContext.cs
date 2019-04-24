@@ -21,30 +21,6 @@ namespace TestSystemProject.Entities
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Question>()
-                .HasMany(e => e.Answers)
-                .WithRequired(e => e.Question)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Test>()
-                .HasMany(e => e.Questions)
-                .WithRequired(e => e.Test)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Test>()
-                .HasMany(e => e.Results)
-                .WithRequired(e => e.Test)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Theme>()
-                .HasMany(e => e.Tests)
-                .WithRequired(e => e.Theme)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Results)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
         }
     }
 }

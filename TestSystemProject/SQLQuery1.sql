@@ -8,7 +8,7 @@ CREATE TABLE Answer
 	[Text] nvarchar(50) not null,
 	[IsRight] bit not null,
 	[QuestionId] int not null,
-	CONSTRAINT FK_ANSWER_TO_QUESTIONS FOREIGN KEY ([QuestionId]) REFERENCES Question([QuestionId]),
+	CONSTRAINT FK_ANSWER_TO_QUESTIONS FOREIGN KEY ([QuestionId]) REFERENCES Question([QuestionId]) on delete cascade
 )
 
 create table Question
@@ -17,7 +17,7 @@ create table Question
 	[Text] nvarchar(200) not null,
 	[Score] int not null,
 	[TestId] int not null,
-	constraint FK_Question_To_Test foreign key ([TestId]) references [Test]([TestId])
+	constraint FK_Question_To_Test foreign key ([TestId]) references [Test]([TestId]) on delete cascade
 )
 
 create table [Test]
@@ -25,7 +25,7 @@ create table [Test]
 	[TestId] int primary key identity,
 	[Name] nvarchar(50) not null,
 	[ThemeId] int not null,
-	constraint FK_Test_To_Theme foreign key ([ThemeId]) references [Theme]([ThemeId])
+	constraint FK_Test_To_Theme foreign key ([ThemeId]) references [Theme]([ThemeId]) on delete cascade
 )
 
 create table Theme
@@ -50,6 +50,13 @@ create table [Result]
 	[TotalScore] int not null,
 	[TestId] int not null,
 	[UserId] int not null,
-	constraint FK_Result_To_Test foreign key ([TestId]) references [Test]([TestId]),
-	constraint FK_Result_To_User foreign key ([UserId]) references [User]([UserId])
+	constraint FK_Result_To_Test foreign key ([TestId]) references [Test]([TestId]) on delete cascade,
+	constraint FK_Result_To_User foreign key ([UserId]) references [User]([UserId])on delete cascade
 )
+
+drop table [User];
+drop table [Result];
+drop table [Theme];
+drop table [Test];
+drop table [Question];
+drop table [Answer];
