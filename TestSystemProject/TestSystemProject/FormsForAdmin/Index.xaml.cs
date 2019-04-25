@@ -31,27 +31,37 @@ namespace TestSystemProject.FormsForAdmin
 
         private void BtnTheme_Click(object sender, RoutedEventArgs e)
         {
-
+            Theme.Theme themeForm = new Theme.Theme(_user);
+            themeForm.Show();
+            Close();
         }
 
         private void BtnTest_Click(object sender, RoutedEventArgs e)
         {
-
+            Test.Test testForm = new Test.Test(_user);
+            testForm.Show();
+            Close();
         }
 
         private void BtnQuestion_Click(object sender, RoutedEventArgs e)
         {
-
+            Question.Question questionForm = new Question.Question(_user);
+            questionForm.Show();
+            Close();
         }
 
         private void BtnAnswer_Click(object sender, RoutedEventArgs e)
         {
-
+            Answer.Answer answerForm = new Answer.Answer(_user);
+            answerForm.Show();
+            Close();
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            Close();
         }
     }
 }

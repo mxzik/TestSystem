@@ -14,26 +14,26 @@ using System.Windows.Shapes;
 using TestSystemProject.Entities;
 using TestSystemProject.Logic.Services;
 
-namespace TestSystemProject.FormsForAdmin.Theme
+namespace TestSystemProject.FormsForAdmin.Test
 {
     /// <summary>
-    /// Логика взаимодействия для Theme.xaml
+    /// Логика взаимодействия для Test.xaml
     /// </summary>
-    public partial class Theme : Window
+    public partial class Test : Window
     {
         private readonly User _user;
 
-        private readonly ThemeService _themeService;
+        private readonly TestService _testService;
 
-        public Theme(User user)
+        public Test(User user)
         {
             _user = user;
 
             InitializeComponent();
 
-            _themeService = new ThemeService();
+            _testService = new TestService();
 
-            dgTheme.ItemsSource = _themeService.GetAll().ToList();
+            dgTest.ItemsSource = _testService.GetAll().ToList();
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
@@ -41,6 +41,41 @@ namespace TestSystemProject.FormsForAdmin.Theme
             Index indexForm = new Index(_user);
             indexForm.Show();
             Close();
+        }
+
+        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = (Entities.Test)dgTest.SelectedItem;
+
+            if (selectedItem != null)
+            {
+                Update updateForm = new Update(selectedItem);
+                updateForm.ShowDialog();
+
+                RefreshDataGrid();
+            }
+            else
+            {
+                MessageBox.Show("Выберите объект их таблицы!");
+            }
+        }
+
+        private void BtnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = (Entities.Test)dgTest.SelectedItem;
+
+            if (selectedItem != null)
+            {
+                _testService.Delete(selectedItem);
+
+                MessageBox.Show("Объект успешо удалён!");
+
+                RefreshDataGrid();
+            }
+            else
+            {
+                MessageBox.Show("Выберите объект их таблицы!");
+            }
         }
 
         private void BtnCreate_Click(object sender, RoutedEventArgs e)
@@ -51,46 +86,11 @@ namespace TestSystemProject.FormsForAdmin.Theme
             RefreshDataGrid();
         }
 
-        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            var selectedItem = (Entities.Theme)dgTheme.SelectedItem;
-
-            if(selectedItem != null)
-            {
-                Update updateForm = new Update(selectedItem);
-                updateForm.ShowDialog();
-
-                RefreshDataGrid();
-            }
-            else
-            {
-                MessageBox.Show("Выберите объект из таблицы!");
-            }
-        }
-
-        private void BtnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            var selectedItem = (Entities.Theme)dgTheme.SelectedItem;
-
-            if (selectedItem != null)
-            {
-                _themeService.Delete(selectedItem);
-
-                MessageBox.Show("Объект успешно удалён!");
-
-                RefreshDataGrid();
-            }
-            else
-            {
-                MessageBox.Show("Выберите объект из таблицы!");
-            }
-        }
-
         private void RefreshDataGrid()
         {
-            dgTheme.ItemsSource = null;
-            dgTheme.ItemsSource = _themeService.GetAll().ToList();
-            dgTheme.Items.Refresh();
+            dgTest.ItemsSource = null;
+            dgTest.ItemsSource = _testService.GetAll().ToList();
+            dgTest.Items.Refresh();
         }
     }
 }

@@ -1,0 +1,20 @@
+﻿<Window x:Class="TestSystemProject.FormsForAdmin.Theme.Update"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
+        xmlns:local="clr-namespace:TestSystemProject.FormsForAdmin.Theme"
+        mc:Ignorable="d"
+        Title="Update" Height="300" Width="300" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBlock TextAlignment="Center" Text="Тема" FontSize="20" FontWeight="Bold"/>
+            <TextBox x:Name="txbTheme" Width="200" materialDesign:HintAssist.Hint="Тема"/>
+            <TextBlock TextAlignment="Center" Text="Описание"  FontSize="20" FontWeight="Bold"/>
+            <TextBox x:Name="txbDescription" Width="200" Height="100" materialDesign:HintAssist.Hint="Описание" TextWrapping="Wrap"/>
+            <Button x:Name="btnUpdate" Content="Изменить" Width="200" Margin="0 40 0 0" Click="BtnUpdate_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TestSystemProject.FormsForAdmin"
         mc:Ignorable="d"
         Title="Index" Height="350" Width="300" WindowStartupLocation="CenterScreen">
-    <Grid Background="LightPink" Margin="10" Opacity="0.8">
+    <Grid Background="LightGreen" Margin="10" Opacity="0.8">
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
             <Button x:Name="btnTheme" Content="Темы" Height="35" Width="250" FontSize="20" Margin="10" Click="BtnTheme_Click"/>
             <Button x:Name="btnTest" Content="Тесты" Height="35" Width="250" FontSize="20" Margin="10" Click="BtnTest_Click"/>

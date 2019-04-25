@@ -39,6 +39,11 @@ namespace TestSystemProject.Logic.Services
 
         }
 
+        public User GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(User entity)
         {
             throw new NotImplementedException();

@@ -14,26 +14,26 @@ using System.Windows.Shapes;
 using TestSystemProject.Entities;
 using TestSystemProject.Logic.Services;
 
-namespace TestSystemProject.FormsForAdmin.Theme
+namespace TestSystemProject.FormsForAdmin.Question
 {
     /// <summary>
-    /// Логика взаимодействия для Theme.xaml
+    /// Логика взаимодействия для Question.xaml
     /// </summary>
-    public partial class Theme : Window
+    public partial class Question : Window
     {
         private readonly User _user;
 
-        private readonly ThemeService _themeService;
+        private readonly QuestionService _questionService;
 
-        public Theme(User user)
+        public Question(User user)
         {
             _user = user;
 
             InitializeComponent();
 
-            _themeService = new ThemeService();
+            _questionService = new QuestionService();
 
-            dgTheme.ItemsSource = _themeService.GetAll().ToList();
+            dgQuestion.ItemsSource = _questionService.GetAll().ToList();
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
@@ -42,6 +42,7 @@ namespace TestSystemProject.FormsForAdmin.Theme
             indexForm.Show();
             Close();
         }
+
 
         private void BtnCreate_Click(object sender, RoutedEventArgs e)
         {
@@ -53,12 +54,14 @@ namespace TestSystemProject.FormsForAdmin.Theme
 
         private void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            var selectedItem = (Entities.Theme)dgTheme.SelectedItem;
+            var selectedItem = (Entities.Question)dgQuestion.SelectedItem;
 
             if(selectedItem != null)
             {
                 Update updateForm = new Update(selectedItem);
                 updateForm.ShowDialog();
+
+                RefreshDataGrid();
 
                 RefreshDataGrid();
             }
@@ -70,11 +73,11 @@ namespace TestSystemProject.FormsForAdmin.Theme
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
-            var selectedItem = (Entities.Theme)dgTheme.SelectedItem;
+            var selectedItem = (Entities.Question)dgQuestion.SelectedItem;
 
             if (selectedItem != null)
             {
-                _themeService.Delete(selectedItem);
+                _questionService.Delete(selectedItem);
 
                 MessageBox.Show("Объект успешно удалён!");
 
@@ -88,9 +91,9 @@ namespace TestSystemProject.FormsForAdmin.Theme
 
         private void RefreshDataGrid()
         {
-            dgTheme.ItemsSource = null;
-            dgTheme.ItemsSource = _themeService.GetAll().ToList();
-            dgTheme.Items.Refresh();
+            dgQuestion.ItemsSource = null;
+            dgQuestion.ItemsSource = _questionService.GetAll().ToList();
+            dgQuestion.Items.Refresh();
         }
     }
 }

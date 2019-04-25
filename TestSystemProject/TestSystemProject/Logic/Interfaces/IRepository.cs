@@ -14,6 +14,8 @@ namespace TestSystemProject.Logic.Interfaces
 
         T GetByEmail(string email);
 
+        T GetByName(string name);
+
         void Create(T entity);
 
         void Update(T entity);

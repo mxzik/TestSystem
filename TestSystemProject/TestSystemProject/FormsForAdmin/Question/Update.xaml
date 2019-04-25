@@ -1,0 +1,22 @@
+﻿<Window x:Class="TestSystemProject.FormsForAdmin.Question.Update"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestSystemProject.FormsForAdmin.Question"
+        mc:Ignorable="d"
+        Title="Update" Height="280" Width="300" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBlock TextAlignment="Center" Text="Тест" FontSize="20" FontWeight="Bold"/>
+            <ComboBox x:Name="txbTest" Width="200" materialDesign:HintAssist.Hint="Тест"/>
+            <TextBlock TextAlignment="Center" Text="Вопрос" FontSize="20" FontWeight="Bold"/>
+            <TextBox x:Name="txbQuestion" IsEnabled="False" Width="200" materialDesign:HintAssist.Hint="Вопрос"/>
+            <TextBlock TextAlignment="Center" Text="Балл" FontSize="20" FontWeight="Bold"/>
+            <TextBox x:Name="txbScore" Width="200" materialDesign:HintAssist.Hint="Кол-во баллов"/>
+            <Button x:Name="btnUpdate" Content="Изменить" Width="200" Margin="0 40 0 0" Click="BtnUpdate_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
