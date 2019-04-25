@@ -3,10 +3,47 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
         xmlns:local="clr-namespace:TestSystemProject.FormsForUser"
         mc:Ignorable="d"
-        Title="Index" Height="450" Width="800">
+        Title="Index" Height="450" Width="600" WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBlock>user</TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" Grid.ColumnSpan="2" Background="Black">
+            <TextBlock Text="Система тестов" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button x:Name="btnBack" Content="Выйти" Width="100" HorizontalAlignment="Right" Margin="0 0 10 0" Click="BtnBack_Click"/>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="5" Height="180" VerticalAlignment="Top">
+            <TextBlock Text="Тема" TextAlignment="Center" FontSize="20" FontWeight="Bold"/>
+            <ComboBox x:Name="txbTheme" Width="130" materialDesign:HintAssist.Hint="Тема" SelectionChanged="TxbTheme_SelectionChanged"/>
+            <TextBlock Text="Тест" TextAlignment="Center" FontSize="20" FontWeight="Bold"/>
+            <ComboBox x:Name="txbTest" Width="130" materialDesign:HintAssist.Hint="Тест"/>
+            <Button x:Name="btnStart" Width="130" Content="Пройти" Margin="0 30 0 0" Click="BtnStart_Click"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Grid.Column="1" Margin="10">
+            <Grid.Background>
+                <ImageBrush ImageSource="/TestSystemProject;component/Images/image.JPG"  Opacity="0.2"/>
+            </Grid.Background>
+
+            <ScrollViewer>
+                <Grid>
+                    <StackPanel x:Name="QuestionsPanel" Margin="0 0 0 40">
+                    </StackPanel>
+
+                    <Button x:Name="btnCheckQuestions" Width="200" VerticalAlignment="Bottom" Margin="0 0 0 5" Click="CheckQuestions_Click">Проверить</Button>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Window>

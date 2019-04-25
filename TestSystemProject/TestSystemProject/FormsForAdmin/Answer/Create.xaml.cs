@@ -45,20 +45,30 @@ namespace TestSystemProject.FormsForAdmin.Answer
             {
                 var question = _questionService.GetByName(txbQuestion.Text);
 
-                //проверка: нет ли такого ответа у этого теста!
-                var answer = _answerService.GetAll().Where(x => x.QuestionId == question.QuestionId && x.Text == txbAnswer.Text).FirstOrDefault();
+                //проверка: есть ли правильный ответ у вопроса
+                int countIsRightAnswer = _answerService.GetAll().Where(x => x.QuestionId == question.QuestionId && x.IsRight && x.IsRight == Convert.ToBoolean(txbIsRight.IsChecked)).Count();
 
-                if (answer == null)
+                if (countIsRightAnswer == 0)
                 {
-                    _answerService.Create(new Entities.Answer { Text = txbAnswer.Text, IsRight = Convert.ToBoolean(txbIsRight.IsChecked), QuestionId = question.QuestionId });
+                    //проверка: на свопадение такого ответа
+                    var answer = _answerService.GetAll().Where(x => x.QuestionId == question.QuestionId && x.Text == txbAnswer.Text).FirstOrDefault();
 
-                    MessageBox.Show("Объект успешно создан!");
+                    if (answer == null)
+                    {
+                        _answerService.Create(new Entities.Answer { Text = txbAnswer.Text, IsRight = Convert.ToBoolean(txbIsRight.IsChecked), QuestionId = question.QuestionId });
 
-                    Close();
+                        MessageBox.Show("Объект успешно создан!");
+
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Такой ответ у этого теста уже есть!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Такой ответ у этого теста уже есть!");
+                    MessageBox.Show("Правильный ответ у этого вопроса уже есть!");
                 }
             }
             else

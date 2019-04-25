@@ -60,3 +60,8 @@ drop table [Theme];
 drop table [Test];
 drop table [Question];
 drop table [Answer];
+
+select * from Test
+join Question on Test.TestId = Question.TestId
+join Answer on Question.QuestionId = Answer.QuestionId
+where Test.TestId = 1;
