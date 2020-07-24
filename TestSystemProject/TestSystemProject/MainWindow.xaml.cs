@@ -19,7 +19,7 @@ using TestSystemProject.Logic.Services;
 namespace TestSystemProject
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия дя MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -50,7 +50,6 @@ namespace TestSystemProject
 
                             _userService.Create(user);
 
-                            //перейти на форму админа
 
                             FormsForAdmin.Index indexAdmin = new FormsForAdmin.Index(user);
                             indexAdmin.Show();

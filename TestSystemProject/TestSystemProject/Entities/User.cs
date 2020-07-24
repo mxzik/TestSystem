@@ -31,3 +31,4 @@ namespace TestSystemProject.Entities
         public virtual ICollection<Result> Results { get; set; }
     }
 }
+

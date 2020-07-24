@@ -12,6 +12,7 @@ namespace TestSystemProject.Logic.Services
     {
         private readonly DatabaseContext _context = new DatabaseContext();        
 
+        //при регистрации
         public void Create(User entity)
         {
             _context.Users.Add(entity);

@@ -122,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FormsForUser\Results.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -177,11 +181,16 @@
     <Compile Include="FormsForUser\Index.xaml.cs">
       <DependentUpon>Index.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FormsForUser\Results.xaml.cs">
+      <DependentUpon>Results.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Logic\Interfaces\IRepository.cs" />
     <Compile Include="Logic\Services\AnswerService.cs" />
     <Compile Include="Logic\Services\QuestionService.cs" />
+    <Compile Include="Logic\Services\ResultService.cs" />
     <Compile Include="Logic\Services\TestService.cs" />
     <Compile Include="Logic\Services\ThemeService.cs" />
+    <Compile Include="Logic\Services\UnitOfWork.cs" />
     <Compile Include="Logic\Services\UserService.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -206,6 +215,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -27,6 +27,8 @@ namespace TestSystemProject.FormsForUser
         private readonly TestService _testService;
         private readonly QuestionService _questionService;
         private readonly AnswerService _answerService;
+        private readonly ResultService _resultService;
+        private readonly UserService _userService;
 
         public Index(User user)
         {
@@ -38,6 +40,8 @@ namespace TestSystemProject.FormsForUser
             _testService = new TestService();
             _questionService = new QuestionService();
             _answerService = new AnswerService();
+            _resultService = new ResultService();
+            _userService = new UserService();
 
             txbTheme.ItemsSource = _themeService.GetAll().Select(x => x.Name).ToList();
 
@@ -63,10 +67,8 @@ namespace TestSystemProject.FormsForUser
 
                     List<string> testsForForm = new List<string>();
 
-                    // беру тест
                     for (int i = 0; i < allTests.Count; i++)
                     {
-                        //беру его вопросы
                         var allQuestions = _questionService.GetAll().Where(x => x.TestId == allTests[i].TestId).ToList();
 
                         int countIsRightAnswer = 0;
@@ -78,7 +80,6 @@ namespace TestSystemProject.FormsForUser
 
                             for (int k = 0; k < allAnswers.Count; k++)
                             {
-                                //если ответ правильный, увеличиваю счётчик
                                 if (allAnswers[k].IsRight)
                                 {
                                     countIsRightAnswer++;
@@ -86,7 +87,6 @@ namespace TestSystemProject.FormsForUser
                             }
                         }
 
-                        //т.к. на 1 вопрос 1 ответ, то кол-во вопросов должно совпадать кол-во ответов
                         if(allQuestions.Count == countIsRightAnswer)
                         {
                             testsForForm.Add(allTests[i].Name);
@@ -195,23 +195,23 @@ namespace TestSystemProject.FormsForUser
             {
                 foreach (var item1 in QuestionsPanel.Children)
                 {
-                    //получаю border
+                    
                     if(item1.GetType() == typeof(Border))
                     {
-                        //получаю stackpanel
+                        
                         Border border = (Border)item1;
                         var tempPanel = border.Child;
                         StackPanel panel1 = (StackPanel)tempPanel;
 
-                        //для того, чтобы получить выбранный или написанный ответ
+                        
                         string tempAnswer = string.Empty;
 
-                        //приоритет буду давать ответу, который вводим в ручную
+                        
                         var IsChecked = false;
 
                         foreach (var item2 in panel1.Children)
                         {
-                            //хочу получить ответ с radio
+                            
                             if(item2.GetType() == typeof(RadioButton))
                             {
                                 if(((RadioButton)item2).IsChecked == true)
@@ -220,7 +220,7 @@ namespace TestSystemProject.FormsForUser
                                 }
                             }
 
-                            //проверка на флажок, если да, то приоритет даю ответу написанному вручную
+                            
                             if(item2.GetType() == typeof(StackPanel))
                             {
                                 StackPanel panel2 = (StackPanel)item2;
@@ -237,16 +237,17 @@ namespace TestSystemProject.FormsForUser
                                 }
                             }
 
-                            //хочу получить ответ с textbox
+                            
                             if (item2.GetType() == typeof(TextBox))
                             {
-                                if (IsChecked)
+                                if (IsChecked) 
                                 {
                                     tempAnswer = ((TextBox)item2).Text;
                                 }                             
                             }
                         }
 
+                        
                         if(tempAnswer.Trim() != string.Empty)
                         {
                             answers.Add(tempAnswer);
@@ -257,7 +258,7 @@ namespace TestSystemProject.FormsForUser
                 var test = _testService.GetByName(txbTest.Text);
 
                 var questions = _questionService.GetAll().Where(x => x.TestId == test.TestId).ToList();
-
+                //var result = _resultService.GetByName(txbTest.Text);
                 int totalScore = 0;
                 int currentScore = 0;
                 int countMyAnswerIsRight = 0;
@@ -270,6 +271,7 @@ namespace TestSystemProject.FormsForUser
 
                     for(int j = 0; j < answers.Count; j++)
                     {
+                        
                         if(answers[j] == answersIsRight)
                         {
                             countMyAnswerIsRight++;
@@ -286,6 +288,8 @@ namespace TestSystemProject.FormsForUser
                                 "Общее количество баллов: " + totalScore.ToString() + Environment.NewLine +
                                 "Ваше количество баллов: " + currentScore.ToString());
 
+                _resultService.Create(new Result { DateOfTest = DateTime.Now, TestId = test.TestId, TotalScore = currentScore, UserId = _user.UserId });
+
                 QuestionsPanel.Children.Clear();
                 txbTest.SelectedIndex = -1;
             }
@@ -300,6 +304,12 @@ namespace TestSystemProject.FormsForUser
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
 
+            Close();
+        }
+        private void BtnRes_Click(object sender, RoutedEventArgs e)
+        {
+            Results result = new Results(_user);
+            result.Show();
             Close();
         }
     }

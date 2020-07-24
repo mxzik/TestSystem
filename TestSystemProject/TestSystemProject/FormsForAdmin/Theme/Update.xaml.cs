@@ -23,7 +23,6 @@ namespace TestSystemProject.FormsForAdmin.Theme
         private readonly Entities.Theme _theme;
         private readonly ThemeService _themeService;
 
-
         public Update(Entities.Theme theme)
         {
             _theme = theme;

@@ -10,6 +10,7 @@ namespace TestSystemProject.Logic.Services
 {
     public class AnswerService : IRepository<Answer>
     {
+
         private readonly DatabaseContext _context = new DatabaseContext();
 
         public void Create(Answer entity)

@@ -25,6 +25,7 @@ namespace TestSystemProject.FormsForAdmin.Theme
 
         private readonly ThemeService _themeService;
 
+        //когда форма загружается 
         public Theme(User user)
         {
             _user = user;

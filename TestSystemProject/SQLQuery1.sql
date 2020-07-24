@@ -61,7 +61,15 @@ drop table [Test];
 drop table [Question];
 drop table [Answer];
 
-select * from Test
+--2
+
+select * from Answer;
+select * from Question;
+select * from Test;
+
+select * from Theme;
+
+select Question.Text, Answer.Text, Answer.IsRight from Test
 join Question on Test.TestId = Question.TestId
 join Answer on Question.QuestionId = Answer.QuestionId
-where Test.TestId = 1;
+where Test.TestId = 1 || Ans;

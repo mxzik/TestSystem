@@ -63,7 +63,7 @@ namespace TestSystemProject.FormsForAdmin.Answer
                     }
                     else
                     {
-                        MessageBox.Show("Такой ответ у этого теста уже есть!");
+                        MessageBox.Show("Такой ответ у этого вопроса уже есть!");
                     }
                 }
                 else
@@ -95,7 +95,7 @@ namespace TestSystemProject.FormsForAdmin.Answer
                     txbAnswer.IsEnabled = false;
                     txbIsRight.IsEnabled = false;
 
-                    txbQuestion.ItemsSource = new List<string>(); //для того, чтобы обновить combobox вопросов
+                    txbQuestion.ItemsSource = new List<string>();
                     txbQuestion.ItemsSource = _questionService.GetAll().Where(x => x.TestId == test.TestId).Select(x => x.Text).ToList();
                 }
             }
